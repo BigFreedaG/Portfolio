@@ -1,0 +1,84 @@
+/* Portfolio styles: Navigation by the Stars theme
+   Colors live in :root below. Change them there and the whole site updates. */
+:root{
+  --bg:#0a1a33; --bg2:#0f2342; --ink:#f3ead6; --muted:#a9b4c8;
+  --gold:#d4a853; --gold2:#f0d28e; --rule:rgba(212,168,83,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.65;overflow-x:hidden;
+  background-image:radial-gradient(circle at 80% 10%,rgba(212,168,83,.08),transparent 40%),radial-gradient(circle at 10% 90%,rgba(80,120,200,.12),transparent 45%)}
+#chart{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3,.brand,.num{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--rule)}
+.brand{font-size:1.5rem;letter-spacing:1px}
+.brand span{color:var(--gold)}
+nav ul{display:flex;gap:26px;list-style:none}
+nav a{color:var(--muted);text-decoration:none;font-size:.82rem;letter-spacing:2px;text-transform:uppercase}
+nav a:hover{color:var(--gold2)}
+
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;min-height:80vh;padding:40px 0}
+.coord{font-size:.75rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02}
+.hero h1 i{color:var(--gold2)}
+.hero p{color:var(--muted);font-size:1.1rem;margin-top:22px;max-width:46ch}
+.cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.btn{padding:12px 24px;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all .25s}
+.btn.primary{background:var(--gold);color:#0a1a33}
+.btn.primary:hover{background:var(--gold2)}
+.btn.ghost{color:var(--gold2)}
+.btn.ghost:hover{background:rgba(212,168,83,.1)}
+
+.compass{width:100%;max-width:420px;justify-self:center}
+.compass svg{width:100%;height:auto;display:block}
+#needle{transform-origin:200px 200px;transition:transform .15s linear}
+.ring-spin{transform-origin:200px 200px;animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+section{padding:90px 0;border-top:1px solid var(--rule)}
+.label{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+.label .num{color:var(--gold);font-size:1.1rem;font-style:italic}
+.label .line{flex:1;height:1px;background:var(--rule)}
+h2{font-size:clamp(2rem,4vw,3rem)}
+.lede{color:var(--muted);max-width:60ch;margin-top:8px;margin-bottom:40px}
+
+.voyages{display:grid;gap:22px}
+.voyage{display:grid;grid-template-columns:200px 1fr;gap:28px;background:linear-gradient(180deg,rgba(15,35,66,.9),rgba(10,26,51,.9));border:1px solid var(--rule);padding:28px}
+.voyage .meta .tag{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.voyage .meta h3{font-size:1.7rem;line-height:1.1;margin-top:6px}
+.route{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+.leg{padding:0 18px;position:relative}
+.leg:not(:last-child)::after{content:"";position:absolute;top:9px;right:-6px;width:12px;height:1px;background:var(--gold)}
+.leg h4{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);display:flex;align-items:center;gap:8px;margin-bottom:8px;font-weight:500}
+.leg h4::before{content:"";width:8px;height:8px;border:1px solid var(--gold);transform:rotate(45deg);flex:none}
+.leg:last-child h4::before{background:var(--gold)}
+.leg p{color:var(--muted);font-size:.92rem}
+.route::before{content:"";position:absolute;left:18px;right:18px;top:9px;border-top:1px dashed var(--rule);z-index:-1}
+
+.instruments{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.inst{border:1px solid var(--rule);padding:22px;position:relative}
+.inst h3{font-size:1.4rem}
+.inst p{color:var(--muted);font-size:.9rem;margin-top:4px}
+.inst .bearing{position:absolute;top:18px;right:18px;font-size:.7rem;color:var(--gold);letter-spacing:1px}
+
+.bearings{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.bearings p{color:var(--muted);margin-bottom:14px}
+blockquote{font-family:"Cormorant Garamond",serif;font-size:1.8rem;font-style:italic;line-height:1.3;color:var(--gold2);border-left:2px solid var(--gold);padding-left:22px}
+
+.signal{text-align:center;padding-bottom:120px}
+.signal h2{font-size:clamp(2.2rem,5vw,3.4rem)}
+.signal p{color:var(--muted);margin:12px auto 30px;max-width:46ch}
+
+@media (max-width:820px){
+  .hero,.bearings{grid-template-columns:1fr}
+  .compass{max-width:280px;order:-1}
+  .voyage{grid-template-columns:1fr}
+  .route{grid-template-columns:1fr;gap:18px}
+  .route::before,.leg::after{display:none}
+  .leg{padding:0}
+  nav ul{gap:14px}
+  nav ul li:nth-child(n+3){display:none}
+}
+@media (prefers-reduced-motion:reduce){.ring-spin{animation:none}#needle{transition:none}}
