@@ -1,4 +1,4 @@
-// Portfolio interactions: compass ticks, scroll-driven needle, star-chart background
+// Shared scripts for every page: compass ticks, scroll-turning needle, star-chart background
 /* Compass ticks */
 const ticks=document.getElementById('ticks'),NS='http://www.w3.org/2000/svg';
 for(let i=0;i<72;i++){
@@ -11,10 +11,12 @@ for(let i=0;i<72;i++){
 }
 /* Needle turns as you scroll the page */
 const needle=document.getElementById('needle');
-const turn=()=>{const p=scrollY/Math.max(1,document.body.scrollHeight-innerHeight);needle.style.transform=`rotate(${-20+p*380}deg)`};
+/* Each page sets data-bearing on <body>, so the needle points a new direction per page */
+const bearing=Number(document.body.dataset.bearing||-20);
+const turn=()=>{const p=scrollY/Math.max(1,document.body.scrollHeight-innerHeight);needle.style.transform=`rotate(${bearing+p*360}deg)`};
 addEventListener('scroll',turn,{passive:true});turn();
 
-/* Star chart background: grid arcs + a few constellations */
+/* Star chart background */
 const cv=document.getElementById('chart'),c=cv.getContext('2d');
 function draw(){
   const d=devicePixelRatio,W=cv.width=innerWidth*d,H=cv.height=innerHeight*d;
